@@ -1,0 +1,143 @@
+#include <iostream>
+#include "roundrobinsystem.h"
+#include <vector>
+
+Player::Player()
+{
+	name = "unknown";
+	wins = 0;
+	draws = 0;
+    isVirtual = false;
+    ranking = 0;
+}
+
+std::string Player::getName()
+{
+    return name;
+}
+
+int Player::getWins()
+{
+    return wins;
+}
+
+int Player::getDraws()
+{
+    return draws;
+}
+
+bool Player::getIsVirtual()
+{
+    return isVirtual;
+}
+
+int Player::getRanking()
+{
+    return ranking;
+}
+
+void Player::setName(std::string newName)
+{
+    name = newName;
+}
+
+void Player::setWins(int newValue)
+{
+    wins = newValue;
+}
+
+void Player::setDraws(int newValue)
+{
+    draws = newValue;
+}
+
+void Player::setIsVirtual(bool newValue)
+{
+    isVirtual = newValue;
+}
+
+void Player::setRanking(int newValue)
+{
+    ranking = newValue;
+}
+
+Roundrobinsystem::Roundrobinsystem()
+{
+    name = "unknown";
+    rotationsCounter = 0;
+}
+
+void Roundrobinsystem::addPlayer()
+{
+    Player newPlayer;
+    PlayersVector.push_back(newPlayer);
+}
+
+void Roundrobinsystem::addPlayer(std::string newName)
+{
+    Player newPlayer;
+    newPlayer.setName(newName);
+    PlayersVector.push_back(newPlayer);
+}
+
+void Roundrobinsystem::clearPlayersVector()
+{
+    PlayersVector.clear();
+}
+
+bool Roundrobinsystem::removePlayer(int position)
+{
+    if(!(int (PlayersVector.size()) > position))
+        return false;
+    PlayersVector.erase(PlayersVector.begin() + position);
+    return true;
+}
+
+bool Roundrobinsystem::removePlayer()
+{
+    if(PlayersVector.empty())
+        return false;
+    PlayersVector.pop_back();
+        return true;
+}
+
+Player Roundrobinsystem::getPlayer(int position)
+{
+    if(position < int(PlayersVector.size()))
+    return PlayersVector[std::size_t (position)];
+
+}
+
+void Roundrobinsystem::clearTournament()
+{
+    PlayersVector.clear();
+    rotationsCounter = 0;
+    name = "unknown";
+}
+
+bool Roundrobinsystem::rotate()
+{
+    if(PlayersVector.size() == 0 || PlayersVector.size()%2 ==1)
+        return false;
+
+      PlayersVector.insert(PlayersVector.begin()+1,PlayersVector.at(PlayersVector.size()-1));
+      PlayersVector.erase(PlayersVector.end());
+
+    rotationsCounter++;
+    return true;
+}
+
+int Roundrobinsystem::getSize()
+{
+	return PlayersVector.size();
+}
+
+/*
+void Roundrobinsystem::print()
+{
+    for(int i = 0; i< PlayersVector.size();i++)
+        std::cout<<PlayersVector[i].getName()<<" ";
+}
+*/
+
+

@@ -1,0 +1,106 @@
+object Form2: TForm2
+  Left = 0
+  Top = 0
+  BorderStyle = bsToolWindow
+  Caption = 'Round Robin Tournament'
+  ClientHeight = 300
+  ClientWidth = 258
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 0
+    Top = 0
+    Width = 258
+    Height = 19
+    Align = alTop
+    Alignment = taCenter
+    Caption = 'Enter Results'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    ExplicitWidth = 92
+  end
+  object Label2: TLabel
+    Left = 8
+    Top = 160
+    Width = 22
+    Height = 16
+    Caption = '1-0'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 109
+    Top = 160
+    Width = 46
+    Height = 16
+    Caption = '0,5-0,5'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 228
+    Top = 160
+    Width = 22
+    Height = 16
+    Caption = '0-1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Button1: TButton
+    Left = 0
+    Top = 263
+    Width = 258
+    Height = 37
+    Align = alBottom
+    Caption = 'Confirm'
+    TabOrder = 0
+    ExplicitWidth = 250
+  end
+  object ComboBox1: TComboBox
+    Left = 8
+    Top = 216
+    Width = 242
+    Height = 24
+    ExtendedUI = True
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+    OnChange = ComboBox1Change
+  end
+  object TrackBar1: TTrackBar
+    Left = 8
+    Top = 182
+    Width = 242
+    Height = 28
+    Max = 2
+    Position = 1
+    TabOrder = 2
+  end
+end

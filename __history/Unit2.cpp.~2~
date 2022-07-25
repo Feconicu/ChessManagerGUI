@@ -1,0 +1,139 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Unit2.h"
+#include "Unit1.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+
+#include "roundrobin.h"
+Roundrobinsystem roundRobin;
+
+TForm2 *Form2;
+
+//---------------------------------------------------------------------------
+__fastcall TForm2::TForm2(TComponent* Owner)
+	: TForm(Owner)
+{
+
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm2::ComboBox1Change(TObject *Sender)
+{
+
+/*
+	if(roundRobin.getPlayer(ComboBox1->ItemIndex) -> getIsVirtual)
+	{
+			TrackBar1 -> Position = 0;
+			TrackBar1 -> Enabled = false;
+	}
+
+	else if(roundRobin.getPlayer(roundRobin.getSize()-1-ComboBox1->ItemIndex) -> getIsVirtual)
+	{
+			TrackBar1 -> Position = 2;
+			TrackBar1 -> Enabled = false;
+	}
+												   // poblems with working on object from Form1
+	else
+	{
+		   TrackBar1 -> Enabled = true;
+		   TrackBar1 -> Position = 1;
+	}
+	*/
+
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TForm2::FormClose(TObject *Sender, TCloseAction &Action)
+{
+	Form1 -> Enabled = true;
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm2::Edit1Enter(TObject *Sender)
+{
+	Edit1 -> SelectAll();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm2::Edit1Change(TObject *Sender)
+{
+	if(Edit1 -> Text == "")
+	{
+		Button2 -> Enabled = false;
+	}
+
+	else
+	{
+		Button2 -> Enabled = true;
+    }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm2::Button2Click(TObject *Sender)
+{
+
+		AnsiString temp = Edit1 -> Text;
+		roundRobin.addPlayer(temp.c_str());
+
+		Memo3 -> Lines -> Clear();
+
+		for(int i = 0; roundRobin.getSize() > i; i++)
+		{
+			AnsiString toList = i+1;
+			toList += ". ";
+			toList += roundRobin.getPlayer(i) -> getName().c_str();
+			Memo3 -> Lines -> Append(toList);
+		}
+
+		if(roundRobin.getSize() < 3)
+		Button3 -> Enabled = false;
+		else
+		Button3 -> Enabled = true;
+
+		Edit1 -> Text = "";
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm2::Edit1KeyPress(TObject *Sender, System::WideChar &Key)
+{
+	if(Key == VK_RETURN && Button2->Enabled)
+	{
+		Button2Click(Edit1);
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm2::Button3Click(TObject *Sender)
+{
+	Edit1 -> Enabled = false;
+	Button2 -> Enabled = false;
+	Button3 -> Enabled = false;
+
+	Button1 -> Enabled = true;
+	ComboBox1 -> Enabled = true;
+	TrackBar1 -> Enabled = true;
+
+	if(roundRobin.getSize()%2 == 1)
+	{
+		roundRobin.addVirtual();
+	}
+
+	Memo2->Lines->Clear();
+
+    	for(int i = 0; roundRobin.getSize() > i; i++)
+		{
+
+
+           //print scoreboard;
+
+		}
+
+}
+//---------------------------------------------------------------------------
+

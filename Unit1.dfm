@@ -3,8 +3,8 @@ object Form1: TForm1
   Top = 0
   BorderStyle = bsToolWindow
   Caption = 'ChessManager'
-  ClientHeight = 456
-  ClientWidth = 413
+  ClientHeight = 375
+  ClientWidth = 316
   Color = clMedGray
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,8 +16,8 @@ object Form1: TForm1
   PixelsPerInch = 96
   TextHeight = 13
   object Button2: TButton
-    Left = 144
-    Top = 150
+    Left = 8
+    Top = 142
     Width = 160
     Height = 80
     Cursor = crHandPoint
@@ -31,8 +31,8 @@ object Form1: TForm1
     TabOrder = 0
   end
   object Button3: TButton
-    Left = 144
-    Top = 236
+    Left = 8
+    Top = 228
     Width = 160
     Height = 80
     Cursor = crHandPoint
@@ -45,20 +45,9 @@ object Form1: TForm1
     ParentFont = False
     TabOrder = 1
   end
-  object Edit1: TEdit
-    Left = 144
-    Top = 355
-    Width = 121
-    Height = 30
-    Cursor = crIBeam
-    Alignment = taCenter
-    AutoSize = False
-    TabOrder = 2
-    Text = 'Edit1'
-  end
   object Button4: TButton
-    Left = 310
-    Top = 64
+    Left = 174
+    Top = 56
     Width = 160
     Height = 80
     Cursor = crHandPoint
@@ -69,13 +58,13 @@ object Form1: TForm1
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 3
+    TabOrder = 2
     WordWrap = True
     OnClick = Button4Click
   end
   object Button5: TButton
-    Left = 310
-    Top = 150
+    Left = 174
+    Top = 142
     Width = 160
     Height = 80
     Cursor = crHandPoint
@@ -86,12 +75,12 @@ object Form1: TForm1
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 4
+    TabOrder = 3
     WordWrap = True
   end
   object Button1: TButton
-    Left = 144
-    Top = 64
+    Left = 8
+    Top = 56
     Width = 160
     Height = 80
     Cursor = crHandPoint
@@ -102,12 +91,12 @@ object Form1: TForm1
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 5
+    TabOrder = 4
     OnClick = Button1Click
   end
   object Button6: TButton
-    Left = 310
-    Top = 236
+    Left = 174
+    Top = 228
     Width = 160
     Height = 80
     Cursor = crHandPoint
@@ -118,23 +107,8 @@ object Form1: TForm1
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 6
+    TabOrder = 5
     WordWrap = True
     OnClick = Button6Click
-  end
-  object PlayersList: TMemo
-    Left = 8
-    Top = 96
-    Width = 100
-    Height = 89
-    DoubleBuffered = False
-    Enabled = False
-    Lines.Strings = (
-      'PlayersList')
-    ParentDoubleBuffered = False
-    ReadOnly = True
-    ScrollBars = ssVertical
-    TabOrder = 7
-    Visible = False
   end
 end

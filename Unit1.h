@@ -7,18 +7,18 @@
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
+#include <Vcl.DBCtrls.hpp>
+#include <Vcl.CheckLst.hpp>
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
 __published:	// IDE-managed Components
 	TButton *Button2;
 	TButton *Button3;
-	TEdit *Edit1;
 	TButton *Button4;
 	TButton *Button5;
 	TButton *Button1;
 	TButton *Button6;
-	TMemo *PlayersList;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button6Click(TObject *Sender);

@@ -1,13 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.058,C:\Users\slowi\OneDrive\Dokumenty\Embarcadero\Studio\Projects\Project1PCH1.h=C:\Users\slowi\OneDrive\Pulpit\chessMenegerGUI\Project1PCH1.h</Transaction>
     <Transaction>1899.12.30 00:00:00.000.229,=C:\Users\slowi\OneDrive\Dokumenty\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.038,C:\Users\slowi\OneDrive\Dokumenty\Embarcadero\Studio\Projects\Project1.cbproj=C:\Users\slowi\OneDrive\Pulpit\chessMenegerGUI\ChessManager.cbproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.478,C:\Users\slowi\OneDrive\Dokumenty\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\slowi\OneDrive\Pulpit\chessMenegerGUI\Unit1.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.027,C:\Users\slowi\OneDrive\Pulpit\chessMenegerGUI\Project1PCH1.h=C:\Users\slowi\OneDrive\Pulpit\chessMenegerGUI\ChessManagerPCH1.h</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.478,C:\Users\slowi\OneDrive\Dokumenty\Embarcadero\Studio\Projects\Unit1.h=C:\Users\slowi\OneDrive\Pulpit\chessMenegerGUI\Unit1.h</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.478,C:\Users\slowi\OneDrive\Dokumenty\Embarcadero\Studio\Projects\Unit1.cpp=C:\Users\slowi\OneDrive\Pulpit\chessMenegerGUI\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.478,C:\Users\slowi\OneDrive\Dokumenty\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\slowi\OneDrive\Pulpit\chessMenegerGUI\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.958,=C:\Users\slowi\OneDrive\Pulpit\chessMenegerGUI\roundrobin.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.038,C:\Users\slowi\OneDrive\Dokumenty\Embarcadero\Studio\Projects\Project1.cbproj=C:\Users\slowi\OneDrive\Pulpit\chessMenegerGUI\ChessManager.cbproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.810,=C:\Users\slowi\OneDrive\Pulpit\chessMenegerGUI\roundrobin.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.681,=C:\Users\slowi\OneDrive\Pulpit\chessMenegerGUI\File1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.058,C:\Users\slowi\OneDrive\Dokumenty\Embarcadero\Studio\Projects\Project1PCH1.h=C:\Users\slowi\OneDrive\Pulpit\chessMenegerGUI\Project1PCH1.h</Transaction>
     <Transaction>1899.12.30 00:00:00.000.668,=C:\Users\slowi\OneDrive\Dokumenty\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.478,C:\Users\slowi\OneDrive\Dokumenty\Embarcadero\Studio\Projects\Unit1.cpp=C:\Users\slowi\OneDrive\Pulpit\chessMenegerGUI\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.478,C:\Users\slowi\OneDrive\Dokumenty\Embarcadero\Studio\Projects\Unit1.h=C:\Users\slowi\OneDrive\Pulpit\chessMenegerGUI\Unit1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.195,C:\Users\slowi\OneDrive\Pulpit\chessMenegerGUI\RoRo.cpp=C:\Users\slowi\OneDrive\Pulpit\chessMenegerGUI\File1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.210,C:\Users\slowi\OneDrive\Pulpit\chessMenegerGUI\RoRo.h=C:\Users\slowi\OneDrive\Pulpit\chessMenegerGUI\File1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.966,=C:\Users\slowi\OneDrive\Pulpit\chessMenegerGUI\File1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.203,=C:\Users\slowi\OneDrive\Pulpit\chessMenegerGUI\Unit2.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.776,=C:\Users\slowi\OneDrive\Pulpit\chessMenegerGUI\Unit2.cpp</Transaction>
   </Transactions>
 </BorlandProject>

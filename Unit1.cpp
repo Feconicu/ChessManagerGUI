@@ -4,9 +4,11 @@
 #pragma hdrstop
 
 #include "Unit1.h"
+#include "Unit2.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
+
 TForm1 *Form1;
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
@@ -18,11 +20,19 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 
 void __fastcall TForm1::FormCreate(TObject *Sender)
 {
+
+
+
+	//Label1->Caption = (object.getPlayer(0).getName()).c_str();
+	//std::string have to be converted to Unicode String. std::stringVariable.c_str(); helps
+
+
+
 	Button1->Left = (Form1->Width - Button1->Width)/2;
 	Button2->Left = Button1 -> Left;
 	Button3->Left = Button1 -> Left;
 
-	Button1->Top  = 100;
+	Button1 ->  Top  = 50;
 	Button2 -> Top = Button1 -> Top + Button1 -> Height + 20;
 	Button3 -> Top = Button2 -> Top + Button2 -> Height + 20;
 
@@ -35,14 +45,11 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 	Button6 -> Visible = false;
 	Button6 -> Enabled = false;
 
-	Edit1 -> Visible = false;
-	Edit1 -> Enabled = false;
 
-	PlayersList -> Width = (Form1 -> Width - 100);
-	PlayersList -> Left = 45;
 
-	PlayersList -> Top = 100;
-	PlayersList -> Height =Edit1 -> Top - 150;
+
+
+
 }
 //---------------------------------------------------------------------------
 
@@ -61,7 +68,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 	Button3 -> Enabled = false;
 
 	Button4 -> Left = (Form1->Width - Button4->Width)/2;
-	Button4 -> Top  = 100;
+	Button4 -> Top  = Button1 -> Top;
 
 
 
@@ -110,20 +117,18 @@ void __fastcall TForm1::Button6Click(TObject *Sender)
 
 void __fastcall TForm1::Button4Click(TObject *Sender)
 {
-	Button4 -> Visible = false;
-	Button4 -> Enabled = false;
-
-	Button5 -> Visible = false;
-	Button5 -> Enabled = false;
-
-	Button6 -> Visible = false;
-	Button6 -> Enabled = false;
-
-	Edit1 -> Visible = true;
-	Edit1 -> Enabled = true;
-
-	PlayersList -> Visible = true;
-	PlayersList -> Enabled = true;
+	Form2 -> Visible = true;
+	Form1 -> Enabled = false;
 }
 //---------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
 

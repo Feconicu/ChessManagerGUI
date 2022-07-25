@@ -1,0 +1,45 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Unit2.h"
+#include "Unit1.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+#include "roundrobin.h"
+TForm2 *Form2;
+
+//---------------------------------------------------------------------------
+__fastcall TForm2::TForm2(TComponent* Owner)
+	: TForm(Owner)
+{
+
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm2::ComboBox1Change(TObject *Sender)
+{
+
+/*
+	if(roundRobin.getPlayer(ComboBox1->ItemIndex) -> getIsVirtual)
+	{
+			TrackBar1 -> Position = 0;
+			TrackBar1 -> Enabled = false;
+	}
+
+	else if(roundRobin.getPlayer(roundRobin.getSize()-1-ComboBox1->ItemIndex) -> getIsVirtual)
+	{
+			TrackBar1 -> Position = 2;
+			TrackBar1 -> Enabled = false;
+	}
+												   // poblems with working on object from Form1
+	else
+	{
+		   TrackBar1 -> Enabled = true;
+		   TrackBar1 -> Position = 1;
+	}
+	*/
+}
+
+//---------------------------------------------------------------------------
