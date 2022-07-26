@@ -55,7 +55,6 @@ __fastcall TForm2::TForm2(TComponent* Owner)
 
 void __fastcall TForm2::ComboBox1Change(TObject *Sender)
 {
-
 	if(ComboBox1->ItemIndex >= 0)
 	{
 		if(roundRobin.getPlayer(ComboBox1->ItemIndex)->getIsVirtual())
@@ -94,30 +93,35 @@ void __fastcall TForm2::ComboBox1Change(TObject *Sender)
 	{
 		Button1 -> Enabled = true;
 	}
-
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TForm2::FormClose(TObject *Sender, TCloseAction &Action)
 {
-	Form1 -> Enabled = true;
-	roundRobin.clearTournament();
-	scoreBoard.clear();
-	resultControl.clear();
+	if(Application->MessageBox(L"Are you sure you want to leave the tournament?",L"Warning!", MB_OKCANCEL)== IDCANCEL)
+	{
+		Action = caNone;
+	}
+	else
+	{
+		Form1 -> Enabled = true;
+		roundRobin.clearTournament();
+		scoreBoard.clear();
+		resultControl.clear();
 
-	Memo1 -> Lines -> Clear();
-	Memo2 -> Lines -> Clear();
-	Memo3 -> Lines -> Clear();
-	ComboBox1 -> Items -> Clear();
-	Edit1 -> Text = "enter name";
-	Edit1 -> Enabled = true;
-	Button1 -> Enabled = false;
-	Button2 -> Enabled = true;
-	Button3 -> Enabled = false;
-	Button4 -> Enabled = false;
-	TrackBar1 -> Enabled = false;
-    Button4 -> Caption = "Next round";
-
+		Memo1 -> Lines -> Clear();
+		Memo2 -> Lines -> Clear();
+		Memo3 -> Lines -> Clear();
+		ComboBox1 -> Items -> Clear();
+		Edit1 -> Text = "enter name";
+		Edit1 -> Enabled = true;
+		Button1 -> Enabled = false;
+		Button2 -> Enabled = true;
+		Button3 -> Enabled = false;
+		Button4 -> Enabled = false;
+		TrackBar1 -> Enabled = false;
+		Button4 -> Caption = "Next round";
+	}
 }
 //---------------------------------------------------------------------------
 
@@ -130,21 +134,23 @@ void __fastcall TForm2::Edit1Enter(TObject *Sender)
 
 void __fastcall TForm2::Edit1Change(TObject *Sender)
 {
+	Button2 -> Enabled = true;
+
 	if(Edit1 -> Text == "")
 	{
 		Button2 -> Enabled = false;
 	}
 
-	else
+	for(int i = 0; i<roundRobin.getSize(); i++)
 	{
-		Button2 -> Enabled = true;
-	}
+		if(Edit1 -> Text == roundRobin.getPlayer(i) -> getName().c_str())
+		  Button2 -> Enabled = false;
+    }
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm2::Button2Click(TObject *Sender)
 {
-
 		AnsiString temp = Edit1 -> Text;
 		roundRobin.addPlayer(temp.c_str());
 
@@ -164,7 +170,10 @@ void __fastcall TForm2::Button2Click(TObject *Sender)
 		Button3 -> Enabled = true;
 
 		Edit1 -> Text = "";
-
+		if(roundRobin.getSize()>31)
+		{
+			Edit1->Enabled = false;
+		}
 }
 //---------------------------------------------------------------------------
 
@@ -193,7 +202,6 @@ void __fastcall TForm2::Button3Click(TObject *Sender)
 	{
 		roundRobin.addVirtual();       			 //adding virtual player if necessary
 	}
-
   ////////////////////////////////////////////////////////////////////////
 	for(int i = 0; roundRobin.getSize() > i; i++)
 	{
@@ -203,9 +211,7 @@ void __fastcall TForm2::Button3Click(TObject *Sender)
 		 for(int i = 0; roundRobin.getSize()/2 > i; i++)
 	{
 		resultControl.push_back(false);  				//loading resultControl vector;
-
 	}
-
 	//////////////////////////////////////////////////////////////////////
 	Memo2->Lines->Clear();
 	sortscoreBoard();
@@ -274,16 +280,12 @@ void __fastcall TForm2::Button3Click(TObject *Sender)
 		}
 		   ComboBox1 -> ItemIndex = 0; // This line DOES NOT trigger the OnChange() method!!!
 		   ComboBox1 -> OnChange(ComboBox1);
-	   //////////////////////////////////////////////////////////////
-
-
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm2::Button1Click(TObject *Sender)
 {
 
-	///////////////////////////////////////////////////////////////
 	if(TrackBar1->Position == 0)
 	{
 		roundRobin.getPlayer(ComboBox1->ItemIndex)->setWins(roundRobin.getPlayer(ComboBox1->ItemIndex)->getWins()+1);
@@ -358,6 +360,22 @@ void __fastcall TForm2::Button1Click(TObject *Sender)
 
 void __fastcall TForm2::Button4Click(TObject *Sender)
 {
+	   if(roundRobin.getRotationsCounter() < roundRobin.getSize()-1)
+		roundRobin.rotate();
+
+	if(roundRobin.getRotationsCounter() == roundRobin.getSize()-1)
+	{
+
+			if(Application->MessageBox(L"Are you sure you want to leave the tournament?",L"Warning!", MB_OKCANCEL)== IDCANCEL)
+			{
+				Button1 -> Enabled = false;
+				Button4 -> Enabled = true;
+				return;
+			}
+			Form2 -> Close();
+	   return;
+	}
+
 	Button1 -> Enabled = true;
 	ComboBox1 -> Enabled = true;
 	TrackBar1 -> Enabled = true;
@@ -373,22 +391,9 @@ void __fastcall TForm2::Button4Click(TObject *Sender)
 
 	scoreBoard.clear();
 
-	roundRobin.rotate();
-
 	if(roundRobin.getRotationsCounter() == roundRobin.getSize()-2)
 	{
 		Button4 -> Caption = "End Tournament";
-	}
-
-	if(roundRobin.getRotationsCounter() == roundRobin.getSize()-1)
-	{
-		while(true)
-		{
-			if(Application->MessageBox(L"Are you sure you want to leave the tournament?",L"Warning!", MB_OKCANCEL)== IDOK)
-			break;
-		}
-            Form2 -> Close();
-	   return;
 	}
 
 	resultControl.clear();
@@ -446,4 +451,6 @@ void __fastcall TForm2::Button4Click(TObject *Sender)
 
 }
 //---------------------------------------------------------------------------
+
+
 

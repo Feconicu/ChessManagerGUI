@@ -1,7 +1,4 @@
-﻿[Button5]
-Coordinates=10,10,53,51
-
-[Button4]
+﻿[Button4]
 Coordinates=79,10,53,51
 
 [Button2]
@@ -17,6 +14,6 @@ Coordinates=10,78,53,51
 Coordinates=79,78,53,51
 
 []
-Coordinates=217,10,40,51
+Coordinates=10,10,53,51
 Visible=True
 

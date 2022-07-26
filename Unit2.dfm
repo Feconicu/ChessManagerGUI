@@ -5,7 +5,7 @@ object Form2: TForm2
   Caption = 'Round Robin Tournament'
   ClientHeight = 300
   ClientWidth = 538
-  Color = clBtnFace
+  Color = clSilver
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -16,41 +16,41 @@ object Form2: TForm2
   PixelsPerInch = 96
   TextHeight = 13
   object Label2: TLabel
-    Left = 352
+    Left = 361
     Top = 169
     Width = 22
     Height = 16
     Caption = '1-0'
-    Font.Charset = DEFAULT_CHARSET
+    Font.Charset = SYMBOL_CHARSET
     Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
+    Font.Height = -15
+    Font.Name = 'Technic'
     Font.Style = [fsBold]
     ParentFont = False
   end
   object Label3: TLabel
     Left = 413
-    Top = 169
-    Width = 46
+    Top = 168
+    Width = 55
     Height = 16
     Caption = '0,5-0,5'
-    Font.Charset = DEFAULT_CHARSET
+    Font.Charset = SYMBOL_CHARSET
     Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
+    Font.Height = -15
+    Font.Name = 'Technic'
     Font.Style = [fsBold]
     ParentFont = False
   end
   object Label4: TLabel
-    Left = 506
+    Left = 500
     Top = 169
     Width = 22
     Height = 16
     Caption = '0-1'
-    Font.Charset = DEFAULT_CHARSET
+    Font.Charset = SYMBOL_CHARSET
     Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
+    Font.Height = -15
+    Font.Name = 'Technic'
     Font.Style = [fsBold]
     ParentFont = False
   end
@@ -62,10 +62,10 @@ object Form2: TForm2
     Alignment = taCenter
     AutoSize = False
     Caption = 'Players:'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
+    Font.Charset = SYMBOL_CHARSET
+    Font.Color = clPurple
     Font.Height = -19
-    Font.Name = 'Tahoma'
+    Font.Name = 'Technic'
     Font.Style = [fsBold]
     ParentFont = False
   end
@@ -78,10 +78,10 @@ object Form2: TForm2
     Alignment = taCenter
     AutoSize = False
     Caption = 'Score Board'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
+    Font.Charset = SYMBOL_CHARSET
+    Font.Color = clPurple
     Font.Height = -19
-    Font.Name = 'Tahoma'
+    Font.Name = 'Technic'
     Font.Style = [fsBold]
     ParentFont = False
   end
@@ -93,10 +93,10 @@ object Form2: TForm2
     Alignment = taCenter
     AutoSize = False
     Caption = 'Pairs'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
+    Font.Charset = SYMBOL_CHARSET
+    Font.Color = clPurple
     Font.Height = -19
-    Font.Name = 'Tahoma'
+    Font.Name = 'Technic'
     Font.Style = [fsBold]
     ParentFont = False
   end
@@ -277,6 +277,7 @@ object Form2: TForm2
     Top = 255
     Width = 176
     Height = 37
+    Cursor = crHandPoint
     Caption = 'Confirm Result'
     Enabled = False
     TabOrder = 0
@@ -287,6 +288,7 @@ object Form2: TForm2
     Top = 225
     Width = 176
     Height = 24
+    Cursor = crHelp
     Enabled = False
     ExtendedUI = True
     Font.Charset = DEFAULT_CHARSET
@@ -303,6 +305,7 @@ object Form2: TForm2
     Top = 191
     Width = 176
     Height = 28
+    Cursor = crHandPoint
     Enabled = False
     Max = 2
     Position = 1
@@ -313,6 +316,7 @@ object Form2: TForm2
     Top = 40
     Width = 176
     Height = 123
+    Color = clCream
     Lines.Strings = (
       '')
     ReadOnly = True
@@ -324,6 +328,7 @@ object Form2: TForm2
     Top = 37
     Width = 156
     Height = 212
+    Color = clCream
     Lines.Strings = (
       '')
     ReadOnly = True
@@ -336,6 +341,7 @@ object Form2: TForm2
     Top = 40
     Width = 176
     Height = 179
+    Color = clCream
     Lines.Strings = (
       '')
     ReadOnly = True
@@ -368,6 +374,7 @@ object Form2: TForm2
     Top = 255
     Width = 176
     Height = 37
+    Cursor = crHandPoint
     Caption = 'Confirm Players'
     Enabled = False
     TabOrder = 7
@@ -378,6 +385,7 @@ object Form2: TForm2
     Top = 225
     Width = 49
     Height = 21
+    Cursor = crHandPoint
     Caption = 'OK'
     TabOrder = 8
     OnClick = Button2Click
@@ -387,6 +395,7 @@ object Form2: TForm2
     Top = 255
     Width = 158
     Height = 37
+    Cursor = crHandPoint
     Caption = 'Next Round'
     Enabled = False
     TabOrder = 9

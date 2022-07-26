@@ -21,7 +21,7 @@ object Form1: TForm1
     Width = 160
     Height = 80
     Cursor = crHandPoint
-    Caption = 'unused'
+    Caption = 'About Application'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
@@ -29,6 +29,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 0
+    OnClick = Button2Click
   end
   object Button3: TButton
     Left = 8
@@ -36,7 +37,7 @@ object Form1: TForm1
     Width = 160
     Height = 80
     Cursor = crHandPoint
-    Caption = 'unused'
+    Caption = 'Quit'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
@@ -44,6 +45,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 1
+    OnClick = Button3Click
   end
   object Button4: TButton
     Left = 174
@@ -62,22 +64,6 @@ object Form1: TForm1
     WordWrap = True
     OnClick = Button4Click
   end
-  object Button5: TButton
-    Left = 174
-    Top = 142
-    Width = 160
-    Height = 80
-    Cursor = crHandPoint
-    Caption = 'Knockout System'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -19
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 3
-    WordWrap = True
-  end
   object Button1: TButton
     Left = 8
     Top = 56
@@ -91,7 +77,7 @@ object Form1: TForm1
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 4
+    TabOrder = 3
     OnClick = Button1Click
   end
   object Button6: TButton
@@ -107,7 +93,7 @@ object Form1: TForm1
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 5
+    TabOrder = 4
     WordWrap = True
     OnClick = Button6Click
   end
