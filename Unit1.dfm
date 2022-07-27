@@ -11,8 +11,10 @@ object Form1: TForm1
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
   OldCreateOrder = False
   OnCreate = FormCreate
+  OnKeyPress = FormKeyPress
   PixelsPerInch = 96
   TextHeight = 13
   object Button2: TButton
@@ -22,13 +24,14 @@ object Form1: TForm1
     Height = 80
     Cursor = crHandPoint
     Caption = 'About Application'
-    Font.Charset = DEFAULT_CHARSET
+    Font.Charset = SYMBOL_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
-    Font.Name = 'Tahoma'
+    Font.Name = 'TechnicBold'
     Font.Style = []
     ParentFont = False
     TabOrder = 0
+    WordWrap = True
     OnClick = Button2Click
   end
   object Button3: TButton
@@ -38,10 +41,10 @@ object Form1: TForm1
     Height = 80
     Cursor = crHandPoint
     Caption = 'Quit'
-    Font.Charset = DEFAULT_CHARSET
+    Font.Charset = SYMBOL_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
-    Font.Name = 'Tahoma'
+    Font.Name = 'TechnicBold'
     Font.Style = []
     ParentFont = False
     TabOrder = 1
@@ -54,10 +57,10 @@ object Form1: TForm1
     Height = 80
     Cursor = crHandPoint
     Caption = 'Round-robin system'
-    Font.Charset = DEFAULT_CHARSET
+    Font.Charset = SYMBOL_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
-    Font.Name = 'Tahoma'
+    Font.Name = 'TechnicBold'
     Font.Style = []
     ParentFont = False
     TabOrder = 2
@@ -71,13 +74,14 @@ object Form1: TForm1
     Height = 80
     Cursor = crHandPoint
     Caption = 'New Tournament'
-    Font.Charset = DEFAULT_CHARSET
+    Font.Charset = SYMBOL_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
-    Font.Name = 'Tahoma'
+    Font.Name = 'TechnicBold'
     Font.Style = []
     ParentFont = False
     TabOrder = 3
+    WordWrap = True
     OnClick = Button1Click
   end
   object Button6: TButton
@@ -87,10 +91,10 @@ object Form1: TForm1
     Height = 80
     Cursor = crHandPoint
     Caption = 'Return'
-    Font.Charset = DEFAULT_CHARSET
+    Font.Charset = SYMBOL_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
-    Font.Name = 'Tahoma'
+    Font.Name = 'TechnicBold'
     Font.Style = []
     ParentFont = False
     TabOrder = 4

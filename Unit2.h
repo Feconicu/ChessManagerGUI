@@ -33,15 +33,17 @@ __published:	// IDE-managed Components
 	TButton *Button4;
 	TImage *Image1;
 	TImage *Image2;
+	TLabel *Label7;
 	void __fastcall ComboBox1Change(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
-	void __fastcall Edit1Enter(TObject *Sender);
 	void __fastcall Edit1Change(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall Edit1KeyPress(TObject *Sender, System::WideChar &Key);
 	void __fastcall Button3Click(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button4Click(TObject *Sender);
+	void __fastcall FormKeyPress(TObject *Sender, System::WideChar &Key);
+	void __fastcall Edit1DblClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TForm2(TComponent* Owner);

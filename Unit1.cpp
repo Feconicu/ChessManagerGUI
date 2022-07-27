@@ -101,7 +101,7 @@ void __fastcall TForm1::Button4Click(TObject *Sender)
 
 void __fastcall TForm1::Button3Click(TObject *Sender)
 {
-    Application -> Terminate();
+	Application -> Terminate();
 }
 //---------------------------------------------------------------------------
 
@@ -111,4 +111,23 @@ void __fastcall TForm1::Button2Click(TObject *Sender)
 	Form3 -> Visible = true;
 }
 //---------------------------------------------------------------------------
+
+void __fastcall TForm1::FormKeyPress(TObject *Sender, System::WideChar &Key)
+{
+	if(Key == VK_ESCAPE)
+	{
+		if(Button3 -> Enabled)
+		{                                       //Key Preview must be true!
+			Button3->OnClick(Button3);
+		}
+
+		if(Button6 -> Enabled)
+		{
+			Button6->OnClick(Button6);
+		}
+	}
+}
+//---------------------------------------------------------------------------
+
+
 

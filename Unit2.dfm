@@ -3,21 +3,23 @@ object Form2: TForm2
   Top = 0
   BorderStyle = bsToolWindow
   Caption = 'Round Robin Tournament'
-  ClientHeight = 300
-  ClientWidth = 538
+  ClientHeight = 337
+  ClientWidth = 570
   Color = clSilver
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
   OldCreateOrder = False
   OnClose = FormClose
+  OnKeyPress = FormKeyPress
   PixelsPerInch = 96
   TextHeight = 13
   object Label2: TLabel
     Left = 361
-    Top = 169
+    Top = 201
     Width = 22
     Height = 16
     Caption = '1-0'
@@ -29,8 +31,8 @@ object Form2: TForm2
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 413
-    Top = 168
+    Left = 429
+    Top = 201
     Width = 55
     Height = 16
     Caption = '0,5-0,5'
@@ -42,8 +44,8 @@ object Form2: TForm2
     ParentFont = False
   end
   object Label4: TLabel
-    Left = 500
-    Top = 169
+    Left = 540
+    Top = 201
     Width = 22
     Height = 16
     Caption = '0-1'
@@ -57,7 +59,7 @@ object Form2: TForm2
   object Label1: TLabel
     Left = 8
     Top = 8
-    Width = 176
+    Width = 153
     Height = 23
     Alignment = taCenter
     AutoSize = False
@@ -70,9 +72,9 @@ object Form2: TForm2
     ParentFont = False
   end
   object Label5: TLabel
-    Left = 200
+    Left = 167
     Top = 8
-    Width = 136
+    Width = 156
     Height = 23
     Align = alCustom
     Alignment = taCenter
@@ -86,9 +88,9 @@ object Form2: TForm2
     ParentFont = False
   end
   object Label6: TLabel
-    Left = 383
-    Top = 11
-    Width = 117
+    Left = 389
+    Top = 10
+    Width = 136
     Height = 23
     Alignment = taCenter
     AutoSize = False
@@ -187,7 +189,7 @@ object Form2: TForm2
     Transparent = True
   end
   object Image2: TImage
-    Left = 506
+    Left = 531
     Top = 8
     Width = 31
     Height = 25
@@ -272,21 +274,42 @@ object Form2: TForm2
       0000}
     Transparent = True
   end
+  object Label7: TLabel
+    Left = 389
+    Top = 172
+    Width = 136
+    Height = 23
+    Alignment = taCenter
+    AutoSize = False
+    Caption = 'Results'
+    Font.Charset = SYMBOL_CHARSET
+    Font.Color = clPurple
+    Font.Height = -19
+    Font.Name = 'Technic'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
   object Button1: TButton
     Left = 354
-    Top = 255
-    Width = 176
+    Top = 292
+    Width = 208
     Height = 37
     Cursor = crHandPoint
     Caption = 'Confirm Result'
     Enabled = False
+    Font.Charset = SYMBOL_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'TechnicBold'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 0
     OnClick = Button1Click
   end
   object ComboBox1: TComboBox
     Left = 354
-    Top = 225
-    Width = 176
+    Top = 257
+    Width = 208
     Height = 24
     Cursor = crHelp
     Enabled = False
@@ -302,45 +325,50 @@ object Form2: TForm2
   end
   object TrackBar1: TTrackBar
     Left = 354
-    Top = 191
-    Width = 176
+    Top = 223
+    Width = 217
     Height = 28
     Cursor = crHandPoint
     Enabled = False
     Max = 2
     Position = 1
     TabOrder = 2
+    ThumbLength = 30
   end
   object Memo1: TMemo
-    Left = 354
+    Left = 352
     Top = 40
-    Width = 176
-    Height = 123
+    Width = 210
+    Height = 130
     Color = clCream
     Lines.Strings = (
       '')
     ReadOnly = True
-    ScrollBars = ssVertical
+    ScrollBars = ssBoth
     TabOrder = 3
   end
   object Memo2: TMemo
-    Left = 190
+    Left = 169
     Top = 37
-    Width = 156
-    Height = 212
+    Width = 179
+    Height = 249
+    BevelKind = bkSoft
+    BevelOuter = bvNone
+    BiDiMode = bdLeftToRight
     Color = clCream
     Lines.Strings = (
       '')
+    ParentBiDiMode = False
     ReadOnly = True
     ScrollBars = ssBoth
     TabOrder = 4
     WordWrap = False
   end
   object Memo3: TMemo
-    Left = 8
-    Top = 40
-    Width = 176
-    Height = 179
+    Left = 10
+    Top = 37
+    Width = 153
+    Height = 214
     Color = clCream
     Lines.Strings = (
       '')
@@ -349,55 +377,74 @@ object Form2: TForm2
     TabOrder = 5
   end
   object Edit1: TEdit
-    Left = 8
-    Top = 225
-    Width = 121
-    Height = 21
+    Left = 10
+    Top = 257
+    Width = 97
+    Height = 29
     Cursor = crIBeam
     Alignment = taCenter
     AutoSize = False
+    BevelKind = bkSoft
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clGray
-    Font.Height = -11
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
-    MaxLength = 12
+    MaxLength = 9
     ParentFont = False
     TabOrder = 6
     Text = 'enter name'
     OnChange = Edit1Change
-    OnEnter = Edit1Enter
+    OnDblClick = Edit1DblClick
     OnKeyPress = Edit1KeyPress
   end
   object Button3: TButton
-    Left = 8
-    Top = 255
-    Width = 176
+    Left = 10
+    Top = 292
+    Width = 153
     Height = 37
     Cursor = crHandPoint
     Caption = 'Confirm Players'
     Enabled = False
+    Font.Charset = SYMBOL_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'TechnicBold'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 7
     OnClick = Button3Click
   end
   object Button2: TButton
-    Left = 135
-    Top = 225
+    Left = 112
+    Top = 257
     Width = 49
-    Height = 21
+    Height = 29
     Cursor = crHandPoint
     Caption = 'OK'
+    Font.Charset = SYMBOL_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'TechnicBold'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 8
     OnClick = Button2Click
   end
   object Button4: TButton
-    Left = 190
-    Top = 255
-    Width = 158
+    Left = 167
+    Top = 292
+    Width = 181
     Height = 37
     Cursor = crHandPoint
     Caption = 'Next Round'
     Enabled = False
+    Font.Charset = SYMBOL_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'TechnicBold'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 9
     OnClick = Button4Click
   end

@@ -1,0 +1,456 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Unit2.h"
+#include "Unit1.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+#include <windows.h>
+#include "roundrobin.h"
+Roundrobinsystem roundRobin;
+std::vector <Player*> scoreBoard;
+std::vector <bool> resultControl;
+
+
+TForm2 *Form2;
+
+ void sortscoreBoard()
+ {
+     for(int i = 0; i < scoreBoard.size() - 1; i++)
+		{
+		   for(int j = 0; j < scoreBoard.size() - 1; j++)
+		   {
+			 if(2*scoreBoard[j+1]->getWins() + scoreBoard[j+1]->getDraws() > 2*scoreBoard[j]->getWins() + scoreBoard[j]->getDraws())
+			 {
+				 Player* temp = scoreBoard [j];
+				 scoreBoard [j] = scoreBoard [j+1];
+				 scoreBoard [j+1] = temp;                                     // sorts scoreBoard Vector
+			 }
+		   }
+		}
+ }
+
+ bool areAllResults()
+ {
+	for(int i=0; i< resultControl.size(); i++)
+	{
+			if(resultControl[i] == false)
+			return false;
+    }
+
+	 return true;
+ }
+
+//---------------------------------------------------------------------------
+__fastcall TForm2::TForm2(TComponent* Owner)
+	: TForm(Owner)
+{
+
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm2::ComboBox1Change(TObject *Sender)
+{
+	if(ComboBox1->ItemIndex >= 0)
+	{
+		if(roundRobin.getPlayer(ComboBox1->ItemIndex)->getIsVirtual())
+		{
+			   TrackBar1 -> Enabled =false;
+			   TrackBar1 -> Position = 2;
+		}
+
+		else if(roundRobin.getPlayer(roundRobin.getSize()-1-ComboBox1->ItemIndex)->getIsVirtual())
+		{
+			 TrackBar1 -> Enabled =false;
+			 TrackBar1 -> Position = 0;
+		}
+
+		else
+		{
+			TrackBar1 -> Enabled = true;
+			TrackBar1 -> Position = 1;
+		}
+	}
+
+	else
+	{
+		 Button1 -> Enabled = false;
+	}
+						// TrackBar Control
+	//////////////////////////////////////////////////////
+						//Confirm Result Button Control
+
+	if((ComboBox1->ItemIndex >=0 && resultControl.at(ComboBox1->ItemIndex)) || ComboBox1->ItemIndex<0)
+	{
+		Button1 -> Enabled = false;
+	}
+
+	else
+	{
+		Button1 -> Enabled = true;
+	}
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TForm2::FormClose(TObject *Sender, TCloseAction &Action)
+{
+	if(Application->MessageBox(L"Are you sure you want to leave the tournament?",L"Warning!", MB_OKCANCEL)== IDCANCEL)
+	{
+		Action = caNone;
+	}
+	else
+	{
+		Form1 -> Enabled = true;
+		roundRobin.clearTournament();
+		scoreBoard.clear();
+		resultControl.clear();
+
+		Memo1 -> Lines -> Clear();
+		Memo2 -> Lines -> Clear();
+		Memo3 -> Lines -> Clear();
+		ComboBox1 -> Items -> Clear();
+		Edit1 -> Text = "enter name";
+		Edit1 -> Enabled = true;
+		Button1 -> Enabled = false;
+		Button2 -> Enabled = true;
+		Button3 -> Enabled = false;
+		Button4 -> Enabled = false;
+		TrackBar1 -> Enabled = false;
+		Button4 -> Caption = "Next round";
+	}
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm2::Edit1Enter(TObject *Sender)
+{
+	Edit1 -> SelectAll();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm2::Edit1Change(TObject *Sender)
+{
+	Button2 -> Enabled = true;
+
+	if(Edit1 -> Text == "")
+	{
+		Button2 -> Enabled = false;
+	}
+
+	for(int i = 0; i<roundRobin.getSize(); i++)
+	{
+		if(Edit1 -> Text == roundRobin.getPlayer(i) -> getName().c_str())
+		  Button2 -> Enabled = false;
+    }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm2::Button2Click(TObject *Sender)
+{
+		AnsiString temp = Edit1 -> Text;
+		roundRobin.addPlayer(temp.c_str());
+
+		Memo3 -> Lines -> Clear();
+
+		for(int i = 0; roundRobin.getSize() > i; i++)
+		{
+			AnsiString toList = i+1;
+			toList += ". ";
+			toList += roundRobin.getPlayer(i) -> getName().c_str();
+			Memo3 -> Lines -> Append(toList);
+		}
+
+		if(roundRobin.getSize() < 3)
+		Button3 -> Enabled = false;
+		else
+		Button3 -> Enabled = true;
+
+		Edit1 -> Text = "";
+		if(roundRobin.getSize()>31)
+		{
+			Edit1->Enabled = false;
+		}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm2::Edit1KeyPress(TObject *Sender, System::WideChar &Key)
+{
+	if(Key == VK_RETURN && Button2->Enabled)
+	{
+		Button2Click(Edit1);
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm2::Button3Click(TObject *Sender)
+{
+
+	Edit1 -> Enabled = false;
+	Button2 -> Enabled = false;
+	Button3 -> Enabled = false;                        //Enable and Disable some Controls
+
+	Button1 -> Enabled = true;
+	ComboBox1 -> Enabled = true;
+	TrackBar1 -> Enabled = true;
+
+  ////////////////////////////////////////////////////////////////////////
+      	if(roundRobin.getSize()%2 == 1)
+	{
+		roundRobin.addVirtual();       			 //adding virtual player if necessary
+	}
+  ////////////////////////////////////////////////////////////////////////
+	for(int i = 0; roundRobin.getSize() > i; i++)
+	{
+		scoreBoard.push_back(roundRobin.getPlayer(i));  //loading scoreBoard vector;
+	}
+
+		 for(int i = 0; roundRobin.getSize()/2 > i; i++)
+	{
+		resultControl.push_back(false);  				//loading resultControl vector;
+	}
+	//////////////////////////////////////////////////////////////////////
+	Memo2->Lines->Clear();
+	sortscoreBoard();
+		for(int i = 0; scoreBoard.size() > i; i++)
+		{
+			   if(!scoreBoard[i]->getIsVirtual())
+			   {
+					AnsiString temp = "";
+					temp += i+1;
+					temp += ". ";
+					temp += scoreBoard[i] -> getName().c_str();
+					temp += "\t\t";
+					int HalfPoints = scoreBoard[i] -> getDraws();
+					int CompletePoints =  scoreBoard[i] -> getWins();
+
+					while(HalfPoints > 1)
+					{
+							HalfPoints -= 2;
+							CompletePoints++;
+					}
+															 // prints scoreboard on memo2
+					if(HalfPoints == 0)
+					temp += CompletePoints;
+
+					if(HalfPoints == 1)
+					{
+						temp += CompletePoints;
+						temp += ".5";
+					}
+
+					Memo2->Lines->Append(temp);
+			   }
+		}
+		 ///////////////////////////////////////////////////////////////////////////////
+
+		Memo1 -> Lines -> Clear();
+		ComboBox1 -> Items -> Clear();
+
+		for(int i = 0; roundRobin.getSize()/2 > i; i++)
+		{
+			 AnsiString temp = "";
+
+			if(!roundRobin.getPlayer(i)->getIsVirtual() && !roundRobin.getPlayer(roundRobin.getSize()-i-1)->getIsVirtual())
+			{
+				temp += roundRobin.getPlayer(i) -> getName().c_str();
+				temp += " - ";
+				temp += roundRobin.getPlayer(roundRobin.getSize()-i-1) -> getName().c_str();
+
+
+			}
+														//Prints Pairs on Memo1 and in ComboBox1
+			if(roundRobin.getPlayer(i)->getIsVirtual())
+			{
+				temp += roundRobin.getPlayer(roundRobin.getSize()-i-1) -> getName().c_str();
+				temp += " is getting free win";
+			}
+
+			if(roundRobin.getPlayer(roundRobin.getSize()-i-1)->getIsVirtual())
+			{
+				temp += roundRobin.getPlayer(i) -> getName().c_str();
+				temp += " is getting free win";
+			}
+
+			Memo1 ->Lines -> Append(temp);
+			ComboBox1 -> Items -> Append(temp);
+		}
+		   ComboBox1 -> ItemIndex = 0; // This line DOES NOT trigger the OnChange() method!!!
+		   ComboBox1 -> OnChange(ComboBox1);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm2::Button1Click(TObject *Sender)
+{
+
+	if(TrackBar1->Position == 0)
+	{
+		roundRobin.getPlayer(ComboBox1->ItemIndex)->setWins(roundRobin.getPlayer(ComboBox1->ItemIndex)->getWins()+1);
+	}
+
+	if(TrackBar1->Position == 2)
+	{
+		int temp;
+		temp = roundRobin.getPlayer(roundRobin.getSize()-1-ComboBox1->ItemIndex) -> getWins();
+		roundRobin.getPlayer(roundRobin.getSize()-1-ComboBox1->ItemIndex) -> setWins(temp+1);
+	}				// adds points based on Trackbar1 position and ComboBox1
+
+	if(TrackBar1->Position == 1)
+	{
+		int temp;
+		temp = roundRobin.getPlayer(ComboBox1->ItemIndex)->getDraws();
+		roundRobin.getPlayer(ComboBox1->ItemIndex)->setDraws(temp+1);
+
+		temp = roundRobin.getPlayer(roundRobin.getSize()-1-ComboBox1->ItemIndex) -> getDraws();
+		roundRobin.getPlayer(roundRobin.getSize()-1-ComboBox1->ItemIndex) -> setDraws(temp+1);
+	}
+	  ////////////////////////////////////////////////////////////////////////////////////
+	   sortscoreBoard();
+
+	 Memo2->Lines->Clear();
+		for(int i = 0; scoreBoard.size() > i; i++)
+		{
+			   if(!scoreBoard[i]->getIsVirtual())
+			   {
+					AnsiString temp = "";
+					temp += i+1;
+					temp += ". ";
+					temp += scoreBoard[i] -> getName().c_str();
+					temp += "\t\t";
+					int HalfPoints = scoreBoard[i] -> getDraws();     	        //print score
+					int CompletePoints =  scoreBoard[i] -> getWins();
+
+					while(HalfPoints > 1)  //Makes complete point out of each two half points;
+					{
+							HalfPoints -= 2;
+							CompletePoints++;
+					}
+
+					if(HalfPoints == 0)
+					temp += CompletePoints;
+
+					if(HalfPoints == 1)
+					{
+						temp += CompletePoints;
+						temp += ".5";
+					}
+
+					Memo2->Lines->Append(temp);
+			   }
+		}
+	 ///////////////////////////////////////////////////////////////////////////////
+		int tempIndex = ComboBox1 -> ItemIndex;
+		 ComboBox1 -> Items -> Strings[ComboBox1->ItemIndex]="Result Confirmed";  //ComboBox loses ItemIndex here and sets it on -1
+		 ComboBox1 -> ItemIndex = tempIndex;
+		 resultControl[ComboBox1->ItemIndex] = true;
+		 ComboBox1 -> OnChange(ComboBox1);
+	  ///////////////////////////////////////////////////////////////////
+		 if(areAllResults())                                 // this happens when all results has been entered
+		 {
+			ComboBox1 -> Enabled = false;
+			TrackBar1 -> Enabled = false;
+			Button4 -> Enabled = true;
+		 }
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm2::Button4Click(TObject *Sender)
+{
+	   if(roundRobin.getRotationsCounter() < roundRobin.getSize()-1)
+		roundRobin.rotate();
+
+	if(roundRobin.getRotationsCounter() == roundRobin.getSize()-1)
+	{
+
+			if(Application->MessageBox(L"Are you sure you want to leave the tournament?",L"Warning!", MB_OKCANCEL)== IDCANCEL)
+			{
+				Button1 -> Enabled = false;
+				Button4 -> Enabled = true;
+				return;
+			}
+			Form2 -> Close();
+	   return;
+	}
+
+	Button1 -> Enabled = true;
+	ComboBox1 -> Enabled = true;
+	TrackBar1 -> Enabled = true;
+	Button4 -> Enabled = false;
+
+	////////////////////////////////////////////////////////////////////
+	  int tempLeft = Image1->Left;
+
+	  Image1->Left = Image2->Left;
+
+      Image2->Left = tempLeft;
+	//////////////////////////////////////////////////////////////////////
+
+	scoreBoard.clear();
+
+	if(roundRobin.getRotationsCounter() == roundRobin.getSize()-2)
+	{
+		Button4 -> Caption = "End Tournament";
+	}
+
+	resultControl.clear();
+	for(int i = 0; roundRobin.getSize()/2 > i; i++)
+	{
+		resultControl.push_back(false);  				//renew result Control vector and rotate roundRobin;
+	}
+
+
+
+
+
+
+	for(int i = 0; roundRobin.getSize() > i; i++)
+	{
+		scoreBoard.push_back(roundRobin.getPlayer(i));  //loading scoreBoard vector;
+	}
+
+  /////////////////////////////////////////////////////////////////////////
+
+		Memo1 -> Lines -> Clear();
+		ComboBox1 -> Items -> Clear();
+
+		for(int i = 0; roundRobin.getSize()/2 > i; i++)
+		{
+			 AnsiString temp = "";
+
+			if(!roundRobin.getPlayer(i)->getIsVirtual() && !roundRobin.getPlayer(roundRobin.getSize()-i-1)->getIsVirtual())
+			{
+				temp += roundRobin.getPlayer(i) -> getName().c_str();
+				temp += " - ";
+				temp += roundRobin.getPlayer(roundRobin.getSize()-i-1) -> getName().c_str();
+
+
+			}
+														//Prints Pairs on Memo1 and in ComboBox1
+			if(roundRobin.getPlayer(i)->getIsVirtual())
+			{
+				temp += roundRobin.getPlayer(roundRobin.getSize()-i-1) -> getName().c_str();
+				temp += " is getting free win";
+			}
+
+			if(roundRobin.getPlayer(roundRobin.getSize()-i-1)->getIsVirtual())
+			{
+				temp += roundRobin.getPlayer(i) -> getName().c_str();
+				temp += " is getting free win";
+			}
+
+			Memo1 ->Lines -> Append(temp);
+			ComboBox1 -> Items -> Append(temp);
+		}
+		   ComboBox1 -> ItemIndex = 0; // This line DOES NOT trigger the OnChange() method!!!
+		   ComboBox1 -> OnChange(ComboBox1);
+	/////////////////////////////////////////////////////////////////////////////////////
+
+}
+//---------------------------------------------------------------------------
+
+
+

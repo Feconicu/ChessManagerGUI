@@ -15,3 +15,14 @@ __fastcall TForm3::TForm3(TComponent* Owner)
 {
 }
 //---------------------------------------------------------------------------
+
+
+
+
+void __fastcall TForm3::FormKeyPress(TObject *Sender, System::WideChar &Key)
+{
+    if(Key == VK_ESCAPE)
+		Form3 -> Close();
+}
+//---------------------------------------------------------------------------
+

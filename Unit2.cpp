@@ -14,7 +14,6 @@ Roundrobinsystem roundRobin;
 std::vector <Player*> scoreBoard;
 std::vector <bool> resultControl;
 
-
 TForm2 *Form2;
 
  void sortscoreBoard()
@@ -44,6 +43,7 @@ TForm2 *Form2;
 	 return true;
  }
 
+
 //---------------------------------------------------------------------------
 __fastcall TForm2::TForm2(TComponent* Owner)
 	: TForm(Owner)
@@ -51,7 +51,6 @@ __fastcall TForm2::TForm2(TComponent* Owner)
 
 }
 //---------------------------------------------------------------------------
-
 
 void __fastcall TForm2::ComboBox1Change(TObject *Sender)
 {
@@ -121,16 +120,13 @@ void __fastcall TForm2::FormClose(TObject *Sender, TCloseAction &Action)
 		Button4 -> Enabled = false;
 		TrackBar1 -> Enabled = false;
 		Button4 -> Caption = "Next round";
+
+
 	}
 }
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm2::Edit1Enter(TObject *Sender)
-{
-	Edit1 -> SelectAll();
-}
-//---------------------------------------------------------------------------
 
 void __fastcall TForm2::Edit1Change(TObject *Sender)
 {
@@ -145,7 +141,7 @@ void __fastcall TForm2::Edit1Change(TObject *Sender)
 	{
 		if(Edit1 -> Text == roundRobin.getPlayer(i) -> getName().c_str())
 		  Button2 -> Enabled = false;
-    }
+	}
 }
 //---------------------------------------------------------------------------
 
@@ -182,6 +178,7 @@ void __fastcall TForm2::Edit1KeyPress(TObject *Sender, System::WideChar &Key)
 	if(Key == VK_RETURN && Button2->Enabled)
 	{
 		Button2Click(Edit1);
+		Key = NULL; //Without this line an ERROR sound is played
 	}
 }
 //---------------------------------------------------------------------------
@@ -198,7 +195,7 @@ void __fastcall TForm2::Button3Click(TObject *Sender)
 	TrackBar1 -> Enabled = true;
 
   ////////////////////////////////////////////////////////////////////////
-      	if(roundRobin.getSize()%2 == 1)
+		if(roundRobin.getSize()%2 == 1)
 	{
 		roundRobin.addVirtual();       			 //adding virtual player if necessary
 	}
@@ -213,26 +210,37 @@ void __fastcall TForm2::Button3Click(TObject *Sender)
 		resultControl.push_back(false);  				//loading resultControl vector;
 	}
 	//////////////////////////////////////////////////////////////////////
-	Memo2->Lines->Clear();
-	sortscoreBoard();
+
+		sortscoreBoard();
+		Memo2->Lines->Clear();
 		for(int i = 0; scoreBoard.size() > i; i++)
 		{
 			   if(!scoreBoard[i]->getIsVirtual())
 			   {
 					AnsiString temp = "";
+
+					if(i>9)
+					temp += " ";
+
 					temp += i+1;
 					temp += ". ";
+
 					temp += scoreBoard[i] -> getName().c_str();
-					temp += "\t\t";
-					int HalfPoints = scoreBoard[i] -> getDraws();
+
+					while(temp.Length() < Edit1->MaxLength + 3)
+					temp += " ";                        //at this point all temp`s ale equally long
+
+                    for(int x = 0; x < 6; x++)
+					temp += " ";
+					int HalfPoints = scoreBoard[i] -> getDraws();     	        //print score
 					int CompletePoints =  scoreBoard[i] -> getWins();
 
-					while(HalfPoints > 1)
+					while(HalfPoints > 1)  //Makes complete point out of each two half points;
 					{
 							HalfPoints -= 2;
 							CompletePoints++;
 					}
-															 // prints scoreboard on memo2
+
 					if(HalfPoints == 0)
 					temp += CompletePoints;
 
@@ -316,10 +324,19 @@ void __fastcall TForm2::Button1Click(TObject *Sender)
 			   if(!scoreBoard[i]->getIsVirtual())
 			   {
 					AnsiString temp = "";
+
+					if(i>9)
+					temp += " ";
+
 					temp += i+1;
 					temp += ". ";
+
 					temp += scoreBoard[i] -> getName().c_str();
-					temp += "\t\t";
+
+					while(temp.Length() < Edit1->MaxLength + 3)
+					temp += " ";                        //at this point all temp`s ale equally long
+
+					temp += "\t";
 					int HalfPoints = scoreBoard[i] -> getDraws();     	        //print score
 					int CompletePoints =  scoreBoard[i] -> getWins();
 
@@ -363,16 +380,12 @@ void __fastcall TForm2::Button4Click(TObject *Sender)
 	   if(roundRobin.getRotationsCounter() < roundRobin.getSize()-1)
 		roundRobin.rotate();
 
-	if(roundRobin.getRotationsCounter() == roundRobin.getSize()-1)
-	{
 
-			if(Application->MessageBox(L"Are you sure you want to leave the tournament?",L"Warning!", MB_OKCANCEL)== IDCANCEL)
-			{
-				Button1 -> Enabled = false;
-				Button4 -> Enabled = true;
-				return;
-			}
-			Form2 -> Close();
+
+
+	  if(roundRobin.getRotationsCounter() == roundRobin.getSize()-1)
+	{
+		Form2 -> Close();
 	   return;
 	}
 
@@ -399,13 +412,8 @@ void __fastcall TForm2::Button4Click(TObject *Sender)
 	resultControl.clear();
 	for(int i = 0; roundRobin.getSize()/2 > i; i++)
 	{
-		resultControl.push_back(false);  				//renew result Control vector and rotate roundRobin;
+		resultControl.push_back(false);  	 	   //renew result Control vector and rotate roundRobin;
 	}
-
-
-
-
-
 
 	for(int i = 0; roundRobin.getSize() > i; i++)
 	{
@@ -426,8 +434,6 @@ void __fastcall TForm2::Button4Click(TObject *Sender)
 				temp += roundRobin.getPlayer(i) -> getName().c_str();
 				temp += " - ";
 				temp += roundRobin.getPlayer(roundRobin.getSize()-i-1) -> getName().c_str();
-
-
 			}
 														//Prints Pairs on Memo1 and in ComboBox1
 			if(roundRobin.getPlayer(i)->getIsVirtual())
@@ -452,5 +458,19 @@ void __fastcall TForm2::Button4Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm2::FormKeyPress(TObject *Sender, System::WideChar &Key)
+{
+	if(Key == VK_ESCAPE)
+	{
+		Form2 -> Close();
+	}
+}
+//---------------------------------------------------------------------------
 
+
+void __fastcall TForm2::Edit1DblClick(TObject *Sender)
+{
+	Edit1 -> SelectAll();
+}
+//---------------------------------------------------------------------------
 
