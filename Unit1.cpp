@@ -114,7 +114,7 @@ void __fastcall TForm1::Button2Click(TObject *Sender)
 
 void __fastcall TForm1::FormKeyPress(TObject *Sender, System::WideChar &Key)
 {
-	if(Key == VK_ESCAPE)
+	if(Key == VK_ESCAPE || Key == 'q' || Key == 'Q')
 	{
 		if(Button3 -> Enabled)
 		{                                       //Key Preview must be true!
@@ -126,6 +126,27 @@ void __fastcall TForm1::FormKeyPress(TObject *Sender, System::WideChar &Key)
 			Button6->OnClick(Button6);
 		}
 	}
+
+	if(Key == 'a' || Key == 'A')
+	{
+		Button2 -> OnClick(Button2);
+	}
+
+	if(Key == 'n' || Key == 'N')
+	{
+		Button1 -> OnClick(Button1);
+	}
+
+		if((Key == 'n' || Key == 'N') && Button1 -> Enabled)
+	{
+		Button1 -> OnClick(Button1);
+	}
+
+		if((Key == 'R' || Key == 'r') && Button4 -> Enabled)
+	{
+		Button4 -> OnClick(Button4);
+	}
+
 }
 //---------------------------------------------------------------------------
 
