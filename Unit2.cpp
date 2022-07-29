@@ -20,7 +20,7 @@ TForm2 *Form2;
  {
      for(int i = 0; i < scoreBoard.size() - 1; i++)
 		{
-		   for(int j = 0; j < scoreBoard.size() - 1; j++)
+		   for(int j = 0; j < scoreBoard.size() - 1 - i; j++)
 		   {
 			 if(2*scoreBoard[j+1]->getWins() + scoreBoard[j+1]->getDraws() > 2*scoreBoard[j]->getWins() + scoreBoard[j]->getDraws())
 			 {
@@ -473,4 +473,5 @@ void __fastcall TForm2::Edit1DblClick(TObject *Sender)
 	Edit1 -> SelectAll();
 }
 //---------------------------------------------------------------------------
+
 

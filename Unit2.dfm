@@ -59,11 +59,11 @@ object Form2: TForm2
   object Label1: TLabel
     Left = 8
     Top = 8
-    Width = 153
+    Width = 155
     Height = 23
     Alignment = taCenter
     AutoSize = False
-    Caption = 'Players:'
+    Caption = 'PLAYERS'
     Font.Charset = SYMBOL_CHARSET
     Font.Color = clPurple
     Font.Height = -19
@@ -72,14 +72,14 @@ object Form2: TForm2
     ParentFont = False
   end
   object Label5: TLabel
-    Left = 167
+    Left = 169
     Top = 8
-    Width = 156
+    Width = 177
     Height = 23
     Align = alCustom
     Alignment = taCenter
     AutoSize = False
-    Caption = 'Score Board'
+    Caption = 'SCORE BOARD'
     Font.Charset = SYMBOL_CHARSET
     Font.Color = clPurple
     Font.Height = -19
@@ -88,13 +88,13 @@ object Form2: TForm2
     ParentFont = False
   end
   object Label6: TLabel
-    Left = 389
-    Top = 10
-    Width = 136
+    Left = 429
+    Top = 8
+    Width = 57
     Height = 23
     Alignment = taCenter
     AutoSize = False
-    Caption = 'Pairs'
+    Caption = 'PAIRS'
     Font.Charset = SYMBOL_CHARSET
     Font.Color = clPurple
     Font.Height = -19
@@ -103,7 +103,7 @@ object Form2: TForm2
     ParentFont = False
   end
   object Image1: TImage
-    Left = 352
+    Left = 392
     Top = 9
     Width = 31
     Height = 25
@@ -189,8 +189,8 @@ object Form2: TForm2
     Transparent = True
   end
   object Image2: TImage
-    Left = 531
-    Top = 8
+    Left = 492
+    Top = 9
     Width = 31
     Height = 25
     Picture.Data = {
@@ -281,7 +281,7 @@ object Form2: TForm2
     Height = 23
     Alignment = taCenter
     AutoSize = False
-    Caption = 'Results'
+    Caption = 'RESULT'
     Font.Charset = SYMBOL_CHARSET
     Font.Color = clPurple
     Font.Height = -19
@@ -295,7 +295,7 @@ object Form2: TForm2
     Width = 208
     Height = 37
     Cursor = crHandPoint
-    Caption = 'Confirm Result'
+    Caption = 'CONFIRM RESULT'
     Enabled = False
     Font.Charset = SYMBOL_CHARSET
     Font.Color = clWindowText
@@ -326,7 +326,7 @@ object Form2: TForm2
   object TrackBar1: TTrackBar
     Left = 354
     Top = 223
-    Width = 217
+    Width = 208
     Height = 28
     Cursor = crHandPoint
     Enabled = False
@@ -337,9 +337,9 @@ object Form2: TForm2
   end
   object Memo1: TMemo
     Left = 352
-    Top = 40
+    Top = 37
     Width = 210
-    Height = 130
+    Height = 129
     Color = clCream
     Lines.Strings = (
       '')
@@ -404,7 +404,7 @@ object Form2: TForm2
     Width = 153
     Height = 37
     Cursor = crHandPoint
-    Caption = 'Confirm Players'
+    Caption = 'CONFIRM LIST'
     Enabled = False
     Font.Charset = SYMBOL_CHARSET
     Font.Color = clWindowText
@@ -416,9 +416,9 @@ object Form2: TForm2
     OnClick = Button3Click
   end
   object Button2: TButton
-    Left = 112
+    Left = 113
     Top = 257
-    Width = 49
+    Width = 50
     Height = 29
     Cursor = crHandPoint
     Caption = 'OK'
@@ -437,7 +437,7 @@ object Form2: TForm2
     Width = 181
     Height = 37
     Cursor = crHandPoint
-    Caption = 'Next Round'
+    Caption = 'NEXT ROUND'
     Enabled = False
     Font.Charset = SYMBOL_CHARSET
     Font.Color = clWindowText
